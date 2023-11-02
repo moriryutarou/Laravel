@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('detail')->nullable();
             $table->boolean('completion_flag');
+            $table->softDeletes();
             $table->foreignId('game_id')->references('id')->on('games');
         });
     }
