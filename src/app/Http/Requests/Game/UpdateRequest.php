@@ -4,7 +4,7 @@ namespace App\Http\Requests\Game;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,6 @@ class CreateRequest extends FormRequest
         return [
             'title' => 'required|max:100'
         ];
-    }
-
-    public function title(): string
-    {
-        return $this->input('title');
     }
 
     public function game(): string

@@ -19,6 +19,8 @@ Route::get('/Game',\App\Http\Controllers\Game\IndexController::class)
 Route::post('/game/create',\App\Http\Controllers\Game\CreateController::class)
 ->name('game.create');
 
+Route::get('/game/update/{id}', \App\Http\Controllers\Game\Update\IndexController::class)->name('game.update.index');
+Route::put('/game/update/{id}',\App\Http\Controllers\Game\Update\PutController::class)->name('game.update.put');
 
 Route::get('/', function () {
     return view('welcome');
