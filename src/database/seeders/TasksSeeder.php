@@ -19,6 +19,8 @@ class TasksSeeder extends Seeder
             DB::table('tasks')->insert([
                 'name'=>fake()->realText(20),
                 'detail'=>fake()->realText(40),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'completion_flag'=> false,
                 'game_id'=>1
             ]);

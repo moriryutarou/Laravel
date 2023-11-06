@@ -17,6 +17,8 @@ class GamesSeeder extends Seeder
     {
         DB::table('games')->insert([
             'title' =>fake()->realText(20),
+            'created_at' => now(),
+            'updated_at' => now(),
             'user_id'=>1
         ]);
     }
