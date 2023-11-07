@@ -30,4 +30,9 @@ class UpdateRequest extends FormRequest
     {
         return $this->input('game');
     }
+
+    public function id(): int
+    {
+        return (int) $this->route('gameId');
+    }
 }

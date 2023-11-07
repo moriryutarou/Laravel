@@ -11,7 +11,12 @@
     <h1>テスト</h1>
     <div>
         @foreach ( $games as $game )
-            <p>{{$game->title}}</p>
+        <details>
+                <summary>{{$game->title}}</summary>
+                <div>
+                    <a href="{{route('game.update.index',['gameId'=>$game->id])}}">編集</a>
+                </div>
+        </details>
         @endforeach
     </div>
     <div>

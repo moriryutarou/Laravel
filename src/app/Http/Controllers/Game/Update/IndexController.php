@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use Illuminate\Http\Request;
 
-use function Livewire\Volt\title;
-
 class IndexController extends Controller
 {
     /**
