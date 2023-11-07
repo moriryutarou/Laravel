@@ -22,6 +22,8 @@ Route::post('/game/create',\App\Http\Controllers\Game\CreateController::class)
 Route::get('/game/update/{gameId}', \App\Http\Controllers\Game\Update\IndexController::class)->name('game.update.index');
 Route::put('/game/update/{gameId}',\App\Http\Controllers\Game\Update\PutController::class)->name('game.update.put');
 
+Route::delete('/game/delete/{gameId}',\App\Http\Controllers\Game\DeleteController::class)->name('game.delete');
+
 Route::get('/', function () {
     return view('welcome');
 });

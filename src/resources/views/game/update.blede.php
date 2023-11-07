@@ -21,8 +21,8 @@
             @csrf
             <label for="game-title">タイトル</label>
             <span>100文字まで</span>
-            <textarea id="game-title" type="text" name="title" placeholder="タイトルを入力"></textarea>
-            @error('title')
+            <textarea id="game-title" type="text" name="game" placeholder="タイトルを入力"></textarea>
+            @error('game')
             <p style="color: red;">{{$message}}</p>
             @enderror
             <button type="submit">編集</button>
