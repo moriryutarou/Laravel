@@ -22,13 +22,8 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:100'
+            'game' => 'required|max:100'
         ];
-    }
-
-    public function title(): string
-    {
-        return $this->input('title');
     }
 
     public function game(): string

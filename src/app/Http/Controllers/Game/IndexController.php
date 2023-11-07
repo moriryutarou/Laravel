@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $games = Game::all();
+        $games = Game::orderBy('created_at','DESC')->get();
         return view('game.index')
             ->with('games',$games);
     }
