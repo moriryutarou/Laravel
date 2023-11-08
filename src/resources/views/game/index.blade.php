@@ -17,7 +17,10 @@
     @endif
     <div>
         @foreach ($games as $game)
+            @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
             <details>
+
+
                 <summary>{{ $game->title }}</summary>
                 @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
                     <div>
@@ -31,7 +34,10 @@
                 @else
                     編集できません
                 @endif
+
+
             </details>
+            @endif
         @endforeach
     </div>
     @auth
