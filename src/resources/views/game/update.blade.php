@@ -11,21 +11,19 @@
 <body>
     <h1>タイトル編集</h1>
     <div>
-        <a href="{{ route('game.index) }}">戻る</a>
-        <p>タイトル編集</p>
-        @if (session('feedback.success'))
-            <p style="color: green">{{ session('feedback.success')}}</p>
-        @endif
-        <form action="{{ route('game.update.put',['gameId' => $game->id]) }}" method="post">
-            @method('PUT')
+        <a href="{{ route('game.index')}}">戻る</a>
+        <p>編集フォーム</p>
+        <form action="{{route('game.update.put',['gameId'=>$game->id])}}" method="POST">
+            @method('put')
             @csrf
             <label for="game-title">タイトル</label>
             <span>100文字まで</span>
-            <textarea id="game-title" type="text" name="game" placeholder="タイトルを入力"></textarea>
+            <textarea id="game-title" type="text" name="game"
+            placeholder="タイトルを入力"></textarea>
             @error('game')
             <p style="color: red;">{{$message}}</p>
             @enderror
-            <button type="submit">編集</button>
+            <button type="submit">追加</button>
         </form>
     </div>
 </body>
