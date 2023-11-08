@@ -18,17 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/game',\App\Http\Controllers\Game\IndexController::class)
-->name('game.index');
-Route::post('/game/create',\App\Http\Controllers\Game\CreateController::class)
-->middleware('auth')
-->name('game.create');
-Route::get('/game/update/{gameId}', \App\Http\Controllers\Game\Update\IndexController::class)
-->name('game.update.index');
-Route::put('/game/update/{gameId}',\App\Http\Controllers\Game\Update\PutController::class)
-->name('game.update.put');
-Route::delete('/game/delete/{gameId}',\App\Http\Controllers\Game\DeleteController::class)
-->name('game.delete');
+Route::get('/game', \App\Http\Controllers\Game\IndexController::class)
+    ->name('game.index');
+Route::middleware('auth')->group(function () {
+    Route::post('/game/create', \App\Http\Controllers\Game\CreateController::class)
+        ->name('game.create');
+    Route::get('/game/update/{gameId}', \App\Http\Controllers\Game\Update\IndexController::class)
+        ->name('game.update.index');
+    Route::put('/game/update/{gameId}', \App\Http\Controllers\Game\Update\PutController::class)
+        ->name('game.update.put');
+    Route::delete('/game/delete/{gameId}', \App\Http\Controllers\Game\DeleteController::class)
+        ->name('game.delete');
+});
+
 
 
 Route::get('/dashboard', function () {
@@ -41,4 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
