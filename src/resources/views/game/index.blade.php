@@ -17,11 +17,11 @@
     @endif
     <div>
         @foreach ($games as $game)
+        <form action="{{ route('game.create') }}" method="POST">
+
             @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
             <details>
-
-
-                <summary>{{ $game->title }}</summary>
+                <summary><a href="{{ route('task.index')}}">{{ $game->title }}</a></summary>
                 @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
                     <div>
                         <a href="{{ route('game.update.index', ['gameId' => $game->id]) }}">編集</a>
@@ -38,6 +38,7 @@
 
             </details>
             @endif
+        </form>
         @endforeach
     </div>
     @auth

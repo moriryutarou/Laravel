@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Task\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Game
 Route::get('/game', \App\Http\Controllers\Game\IndexController::class)
     ->name('game.index');
 Route::middleware('auth')->group(function () {
@@ -30,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/game/delete/{gameId}', \App\Http\Controllers\Game\DeleteController::class)
         ->name('game.delete');
 });
+
+//Task
+Route::resource('task',TaskController::class);
 
 
 
