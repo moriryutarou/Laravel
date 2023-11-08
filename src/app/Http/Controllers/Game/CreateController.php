@@ -14,6 +14,7 @@ class CreateController extends Controller
     public function __invoke(CreateRequest $request)
     {
         $game = new Game;
+        $game->user_id = $request->userId();
         $game->title = $request->game();
         $game->save();
         return redirect()->route('game.index');

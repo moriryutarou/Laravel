@@ -27,6 +27,7 @@
         </details>
         @endforeach
     </div>
+    @auth
     <div>
         <p>タイトル追加</p>
         <form action="{{ route('game.create')}}" method="POST">
@@ -41,5 +42,6 @@
             <button type="submit">追加</button>
         </form>
     </div>
+    @endauth
 </body>
 </html>
