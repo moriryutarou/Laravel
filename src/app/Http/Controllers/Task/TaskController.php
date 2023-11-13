@@ -69,23 +69,23 @@ class TaskController extends Controller
      */
     public function update(UpdateRequest $request, string $id)
     {
-        $task = Task::where('id',$request->id())->firstOrFail();
+        $task = Task::where('id',$id)->firstOrFail();
         $task->name = $request->task();
         $task->save();
         return redirect()
-            ->route('task.edit',['taskId'=>$task->id])
+            ->route('task.index',$task->game_id)
             ->with('feedback.success',"タスク名を編集しました");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $task = Task::all($id)->firstOrFail();
+        $task = Task::find($id);
         $task->delete();
-        return redirect()
-            ->route('task.index')
+        return redirect('task')
+            ->route('task.index',$task->game_id)
             ->with('feedback.success',"タイトルを削除しました");
     }
 }

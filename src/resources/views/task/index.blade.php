@@ -15,16 +15,24 @@
     @endif
     <div>
         @foreach ($tasks as $task)
-            <form action="{{ route('game.create') }}" method="POST">
 
                 @if (\Illuminate\Support\Facades\auth::id() === $task->game_id)
                     <details>
                         <summary><a href="{{ route('task.index', ['id' => $task->task_id]) }}">{{ $task->name }}</a>
                         </summary>
-
+                        <div>
+                            <form action={{route('task.edit',$task->id)}} method="GET">
+                            @csrf
+                            <button type="submit">編集</button>
+                            </form>
+                            <form action="{{route('task.destroy',['id'=>$task->id])}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit">削除</button>
+                            </form>
+                        </div>
                     </details>
                 @endif
-            </form>
         @endforeach
     </div>
     <div>

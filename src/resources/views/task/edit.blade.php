@@ -9,14 +9,14 @@
 </head>
 
 <body>
-    <h1>タイトル編集</h1>
+    <h1>タスク編集</h1>
     <div>
-        <a href="{{ route('task.edit')}}">戻る</a>
+        <a href="{{ route('task.index')}}">戻る</a>
         <p>編集フォーム</p>
-        <form action="{{route('task.update.put',['taskId'=>$task->id])}}" method="POST">
-            @method('put')
+        <form action="{{route('task.update',$task->id)}}" method="POST">
+            @method('PUT')
             @csrf
-            <label for="task-name">タイトル</label>
+            <label for="task-name">タスク</label>
             <span>100文字まで</span>
             <textarea id="task-name" type="text" name="task"
             placeholder="タイトルを入力"></textarea>
