@@ -12,13 +12,13 @@ class TaskService
         return Task::orderBy('created_at','DESC')->get();
     }
 
-    public function checkOwnTask(int $gameId, int $taskId): bool
-    {
-        $task= Task::where('id',$taskId)->first();
-        if(!$task){
-            return false;
-        }
+//     public function checkOwnTask(int $gameId, int $taskId): bool
+//     {
+//         $task= Task::where('id',$taskId)->first();
+//         if(!$task){
+//             return false;
+//         }
 
-        return $task->game_id === $gameId;
-    }
-}
+//         return $task->game_id === $gameId;
+//     }
+ }

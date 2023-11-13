@@ -84,7 +84,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
         $task->delete();
-        return redirect('task')
+        return redirect()
             ->route('task.index',$task->game_id)
             ->with('feedback.success',"タイトルを削除しました");
     }

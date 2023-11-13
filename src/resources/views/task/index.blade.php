@@ -16,7 +16,7 @@
     <div>
         @foreach ($tasks as $task)
 
-                @if (\Illuminate\Support\Facades\auth::id() === $task->game_id)
+                {{-- @if (\Illuminate\Support\Facades\auth::id() === $task->game_id) --}}
                     <details>
                         <summary><a href="{{ route('task.index', ['id' => $task->task_id]) }}">{{ $task->name }}</a>
                         </summary>
@@ -25,14 +25,16 @@
                             @csrf
                             <button type="submit">編集</button>
                             </form>
-                            <form action="{{route('task.destroy',['id'=>$task->id])}}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit">削除</button>
+                        </div>
+                        <div>
+                            <form action="{{route('task.destroy',$task->id)}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit">削除</button>
                             </form>
                         </div>
                     </details>
-                @endif
+                {{-- @endif --}}
         @endforeach
     </div>
     <div>
@@ -42,7 +44,7 @@
             <label for="task-name">タイトル</label>
             <span>100文字まで</span>
             <textarea id="task-name" type="text" name="task" placeholder="タスクを入力"></textarea>
-            <input type="hidden" id="game_id" name="game_id" value={{request()->query('gameId')}} />
+            <input type="hidden" id="game_id" name="game_id" value={{request()->query('gameId')}} >
             @error('task')
                 <p style="color: red;">{{ $message }}</p>
             @enderror
