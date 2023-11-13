@@ -21,7 +21,7 @@
 
             @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
             <details>
-                <summary><a href="{{ route('task.index')}}">{{ $game->title }}</a></summary>
+                <summary><a href="{{ route('task.index', ['gameId' => $game->id]) }}">{{ $game->title }}</a></summary>
                 @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
                     <div>
                         <a href="{{ route('game.update.index', ['gameId' => $game->id]) }}">編集</a>

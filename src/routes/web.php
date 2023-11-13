@@ -34,7 +34,11 @@ Route::middleware('auth')->group(function () {
 });
 
 //Task
-Route::resource('task',TaskController::class);
+Route::resource('/task',TaskController::class);
+Route::resource('/task/create',TaskController::class);
+
+
+
 
 
 
