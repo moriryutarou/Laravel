@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Player Library</title>
 </head>
 
 <body>
     <h1>タスク編集</h1>
     <div>
-        <a href="{{ route('task.index')}}">戻る</a>
+        <a href="{{ route('game.index')}}">戻る</a>
         <p>編集フォーム</p>
         <form action="{{route('task.update',$task->id)}}" method="POST">
             @method('PUT')

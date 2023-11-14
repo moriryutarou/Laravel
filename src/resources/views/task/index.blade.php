@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Player Library</title>
 </head>
 
 <body>
@@ -14,9 +14,10 @@
         <p style="color: green">{{ session('feedback,success') }}</p>
     @endif
     <div>
+    <a href="{{ route('game.index')}}">戻る</a>
+    </div>
+    <div>
         @foreach ($tasks as $task)
-
-                {{-- @if (\Illuminate\Support\Facades\auth::id() === $task->game_id) --}}
                     <details>
                         <summary><a href="{{ route('task.index', ['id' => $task->task_id]) }}">{{ $task->name }}</a>
                         </summary>
@@ -34,7 +35,6 @@
                             </form>
                         </div>
                     </details>
-                {{-- @endif --}}
         @endforeach
     </div>
     <div>

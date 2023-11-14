@@ -20,7 +20,8 @@ class TaskController extends Controller
     public function index()
     {
         $taskService = new TaskService;
-        $tasks = $taskService->getTasks(request()->query('gameId'));
+        $gameId = request()->query('gameId');
+        $tasks = $taskService->getTasks($gameId);
         return view('task.index')
             ->with('tasks',$tasks);
     }
@@ -39,7 +40,6 @@ class TaskController extends Controller
     public function store(CreateRequest $request)
     {
         $task = new Task();
-        // $task->name = $request->task();
         $task->name = $request->input('task');
         $task->game_id = $request->input('game_id');
 
@@ -73,8 +73,7 @@ class TaskController extends Controller
         $task->name = $request->task();
         $task->save();
         return redirect()
-            ->route('task.index',$task->game_id)
-            ->with('feedback.success',"タスク名を編集しました");
+            ->route('task.index',$task->game_id);
     }
 
     /**
@@ -85,7 +84,6 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
         return redirect()
-            ->route('task.index',$task->game_id)
-            ->with('feedback.success',"タイトルを削除しました");
+            ->route('task.index',$task->game_id);
     }
 }
