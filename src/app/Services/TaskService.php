@@ -7,18 +7,11 @@ use App\Models\Game;
 
 class TaskService
 {
-    public function getTasks()
+    public function getTasks($gameId)
     {
-        return Task::orderBy('created_at','DESC')->get();
+        return Task::where('game_id',$gameId)
+        ->orderBy('created_at','DESC')
+        ->get();
     }
 
-//     public function checkOwnTask(int $gameId, int $taskId): bool
-//     {
-//         $task= Task::where('id',$taskId)->first();
-//         if(!$task){
-//             return false;
-//         }
-
-//         return $task->game_id === $gameId;
-//     }
  }

@@ -20,7 +20,7 @@ class TaskController extends Controller
     public function index()
     {
         $taskService = new TaskService;
-        $tasks = $taskService->getTasks();
+        $tasks = $taskService->getTasks(request()->query('gameId'));
         return view('task.index')
             ->with('tasks',$tasks);
     }

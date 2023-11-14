@@ -11,14 +11,12 @@
 </head>
 
 <body>
-    <h1>テスト</h1>
+    <h1>タイトル一覧</h1>
     @if (session('feedback.success'))
         <p style="color: green">{{ session('feedback,success') }}</p>
     @endif
     <div>
         @foreach ($games as $game)
-        <form action="{{ route('game.create') }}" method="POST">
-
             @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
             <details>
                 <summary><a href="{{ route('task.index', ['gameId' => $game->id]) }}">{{ $game->title }}</a></summary>
@@ -34,11 +32,8 @@
                 @else
                     編集できません
                 @endif
-
-
             </details>
             @endif
-        </form>
         @endforeach
     </div>
     @auth
