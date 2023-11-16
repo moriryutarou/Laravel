@@ -22,6 +22,9 @@
                         <summary><a href="{{ route('task.index', ['id' => $task->task_id]) }}">{{ $task->name }}</a>
                         </summary>
                         <div>
+                            <p>{{$task->detail}}</p>
+                        </div>
+                        <div>
                             <form action={{route('task.edit',$task->id)}} method="GET">
                             @csrf
                             <button type="submit">編集</button>
@@ -43,9 +46,14 @@
             @csrf
             <label for="task-name">タイトル</label>
             <span>100文字まで</span>
-            <textarea id="task-name" type="text" name="task" placeholder="タスクを入力"></textarea>
+            <div>
+            <textarea id="task-name" type="text" name="name" placeholder="タスクを入力"></textarea>
+            </div>
+            <div>
+            <textarea id="task-detail" type="text" name="detail" placeholder="詳細内容を入力"></textarea>
+            </div>
             <input type="hidden" id="game_id" name="game_id" value={{request()->query('gameId')}} >
-            @error('task')
+            @error('name')
                 <p style="color: red;">{{ $message }}</p>
             @enderror
             <button type="submit">追加</button>

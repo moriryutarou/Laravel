@@ -18,9 +18,15 @@
             @csrf
             <label for="task-name">タスク</label>
             <span>100文字まで</span>
-            <textarea id="task-name" type="text" name="task"
+            <div>
+            <textarea id="task-name" type="text" name="name"
             placeholder="タイトルを入力"></textarea>
-            @error('task')
+            </div>
+            <div>
+            <textarea id="task-name" type="text" name="detail"
+            placeholder="説明内容を入力"></textarea>
+            </div>
+            @error('name')
             <p style="color: red;">{{$message}}</p>
             @enderror
             <button type="submit">追加</button>

@@ -40,11 +40,11 @@ class TaskController extends Controller
     public function store(CreateRequest $request)
     {
         $task = new Task();
-        $task->name = $request->input('task');
+        $task->name = $request->input('name');
+        $task->detail = $request->input('detail');
         $task->game_id = $request->input('game_id');
-
         $task->save();
-        return redirect()->route('task.index');
+        return redirect()->route('game.index');
     }
 
     /**
@@ -70,7 +70,8 @@ class TaskController extends Controller
     public function update(UpdateRequest $request, string $id)
     {
         $task = Task::where('id',$id)->firstOrFail();
-        $task->name = $request->task();
+        $task->name = $request->input('name');
+        $task->detail = $request->input('detail');
         $task->save();
         return redirect()
             ->route('task.index',$task->game_id);
