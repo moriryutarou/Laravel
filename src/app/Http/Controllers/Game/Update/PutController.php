@@ -22,8 +22,8 @@ class PutController extends Controller
         $game = Game::where('id',$request->id())->firstOrFail();
         $game->title = $request->game();
         $game->save();
-        return redirect()
-                ->route('game.update.index',['gameId' =>$game->id])
-                ->with('feedback.success',"タイトルを編集しました");
+        $games = $gameService->getGames();
+        return view('game.index')
+            ->with('games',$games);
     }
 }

@@ -74,7 +74,7 @@ class TaskController extends Controller
         $task->detail = $request->input('detail');
         $task->save();
         return redirect()
-            ->route('task.index',$task->game_id);
+            ->route('game.index');
     }
 
     /**
@@ -85,6 +85,6 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
         return redirect()
-            ->route('task.index',$task->game_id);
+            ->route('game.index');
     }
 }
