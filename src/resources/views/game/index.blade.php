@@ -43,7 +43,7 @@
                     @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
                         <div class="p-2 flex-grow-1  mb-3">
                             <summary>
-                                <a href="{{ route('task.index', ['gameId' => $game->id]) }}">{{ $game->title }}</a>
+                                <a href="{{ route('task.index', ['gameid' => $game->id]) }}">{{ $game->title }}</a>
                             </summary>
                         </div>
 
@@ -62,7 +62,7 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('game.update.put', ['gameId' => $game->id]) }}"
+                                            <form action="{{ route('game.update.put', ['gameid' => $game->id]) }}"
                                                 method="POST">
                                                 @method('put')
                                                 @csrf
@@ -99,7 +99,7 @@
                                             登録したタスクも含めて削除されます
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('game.delete', ['gameId' => $game->id]) }}"
+                                            <form action="{{ route('game.delete', ['gameid' => $game->id]) }}"
                                                 method="POST">
                                                 @method('DELETE')
                                                 @csrf

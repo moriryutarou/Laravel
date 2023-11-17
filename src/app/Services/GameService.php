@@ -11,9 +11,9 @@ class GameService
         return Game::orderBy('created_at','DESC')->get();
     }
 
-    public function checkOwnGame(int $userId, int $gameId): bool
+    public function checkOwnGame(int $userId, int $gameid): bool
     {
-        $game= Game::where('id',$gameId)->first();
+        $game= Game::where('id',$gameid)->first();
         if(!$game){
             return false;
         }

@@ -7,9 +7,9 @@ use App\Models\Game;
 
 class TaskService
 {
-    public function getTasks($gameId)
+    public function getTasks($gameid)
     {
-        return Task::where('game_id',$gameId)
+        return Task::where('game_id',$gameid)
         ->orderBy('created_at','DESC')
         ->get();
     }

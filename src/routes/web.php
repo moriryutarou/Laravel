@@ -25,11 +25,11 @@ Route::get('/game', \App\Http\Controllers\Game\IndexController::class)
 Route::middleware('auth')->group(function () {
     Route::post('/game/create', \App\Http\Controllers\Game\CreateController::class)
         ->name('game.create');
-    Route::get('/game/update/{gameId}', \App\Http\Controllers\Game\Update\IndexController::class)
+    Route::get('/game/update/{gameid}', \App\Http\Controllers\Game\Update\IndexController::class)
         ->name('game.update.index');
-    Route::put('/game/update/{gameId}', \App\Http\Controllers\Game\Update\PutController::class)
+    Route::put('/game/update/{gameid}', \App\Http\Controllers\Game\Update\PutController::class)
         ->name('game.update.put');
-    Route::delete('/game/delete/{gameId}', \App\Http\Controllers\Game\DeleteController::class)
+    Route::delete('/game/delete/{gameid}', \App\Http\Controllers\Game\DeleteController::class)
         ->name('game.delete');
 });
 

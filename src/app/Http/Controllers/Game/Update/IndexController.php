@@ -15,11 +15,11 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request,GameService $gameService)
     {
-        $gameId = (int) $request->route('gameId');
-        if (!$gameService->checkOwnGame($request->user()->id,$gameId)){
+        $gameid = (int) $request->route('gameid');
+        if (!$gameService->checkOwnGame($request->user()->id,$gameid)){
             throw new AccessDeniedHttpException();
         }
-        $game = Game::where('id',$gameId)->firstOrFail();
+        $game = Game::where('id',$gameid)->firstOrFail();
         return view('game.update')->with('game',$game);
     }
 }

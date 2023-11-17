@@ -142,7 +142,7 @@
                 <div class="mb-3">
                     <small>255文字まで</small>
                 </div>
-                <input type="hidden" id="game_id" name="game_id" value={{ request()->query('gameId') }}>
+                <input type="hidden" id="game_id" name="game_id" value={{ request()->query('gameid') }}>
                 @error('name')
                     <p style="color: red;">{{ $message }}</p>
                 @enderror
