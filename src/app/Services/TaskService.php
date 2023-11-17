@@ -11,7 +11,7 @@ class TaskService
     {
         return Task::where('game_id',$gameid)
         ->orderBy('created_at','DESC')
-        ->get();
+        ->paginate(10);
     }
 
  }

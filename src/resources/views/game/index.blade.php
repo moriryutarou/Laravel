@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <title>Player Library</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -16,19 +15,20 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">タイトル一覧</a>
-          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <a class="navbar-brand" href="#">タイトル一覧</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber"
+                aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <div class="collapse navbar-collapse justify-content-end " id="Navber">
-            <form class="d-flex" role="search">
-              <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索...">
-              <button type="submit" class="btn btn-outline-success flex-shrink-0">検索</button>
-            </form>
-          </div><!-- /.navbar-collapse -->
+            <div class="collapse navbar-collapse justify-content-end " id="Navber">
+                <form class="d-flex" role="search">
+                    <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success flex-shrink-0">検索</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
-      </nav>
+    </nav>
     <div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
@@ -115,7 +115,14 @@
                     @endif
                 </div>
             @endforeach
+            <div class="pagination justify-content-center">
+                {{ $games->links() }}
+            </div>
+            <div>
+                <hr>
+            </div>
         </div>
+
 
 
     </div>

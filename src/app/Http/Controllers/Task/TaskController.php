@@ -21,7 +21,6 @@ class TaskController extends Controller
     {
         $taskService = new TaskService;
         $gameid = request()->query('gameid');
-        
         $tasks = $taskService->getTasks($gameid);
         return view('task.index')
             ->with('tasks',$tasks);

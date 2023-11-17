@@ -8,7 +8,7 @@ class GameService
 {
     public function getGames()
     {
-        return Game::orderBy('created_at','DESC')->get();
+        return Game::orderBy('created_at','DESC')->paginate(5);
     }
 
     public function checkOwnGame(int $userId, int $gameid): bool
