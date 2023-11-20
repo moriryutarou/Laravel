@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Task\TaskController;
+use App\Http\Controllers\Search\SearchController;
 use Illuminate\Support\Facades\Route;
+
+use function Laravel\Prompts\search;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +39,8 @@ Route::middleware('auth')->group(function () {
 //Task
 Route::resource('/task',TaskController::class);
 
+//Search
+Route::get('/Search',[SearchController::class,'index'])->name('Search.index');
 
 
 
