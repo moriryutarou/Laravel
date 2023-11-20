@@ -63,6 +63,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
+                                        @auth
                                         <div class="modal-body">
                                             <form action="{{ route('game.update.put', ['gameid' => $game->id]) }}"
                                                 method="POST">
@@ -79,6 +80,8 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        @endauth
+
                                     </div>
                                 </div>
                             </div>

@@ -13,7 +13,7 @@
     <div>
         <a href="{{ route('game.index')}}">戻る</a>
         <p>編集フォーム</p>
-        <form action="{{route('game.update.put',['gameId'=>$game->id])}}" method="POST">
+        <form action="{{route('game.update.put',['gameid'=>$game->id])}}" method="POST">
             @method('put')
             @csrf
             <label for="game-title">タイトル</label>

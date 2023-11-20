@@ -33,6 +33,6 @@ class UpdateRequest extends FormRequest
 
     public function id(): int
     {
-        return (int) $this->route('gameId');
+        return (int) $this->route('gameid');
     }
 }

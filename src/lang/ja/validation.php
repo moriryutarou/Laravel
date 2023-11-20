@@ -134,6 +134,7 @@ return [
         ],
     ],
     'attributes' =>[
-        'game'=>'タイトル'
+        'game'=>'タイトル',
+        'name'=>'タスク名'
     ],
 ];

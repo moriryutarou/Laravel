@@ -48,6 +48,7 @@
                 <a></a>
             </div>
             <div class="container">
+                <hr>
                 @foreach ($tasks as $task)
                     <div class="d-flex row-gap-3 .pt-4">
                         <div class="p-2 flex-grow-1  mb-3">
