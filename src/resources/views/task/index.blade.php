@@ -49,6 +49,9 @@
             </div>
             <div class="container">
                 <hr>
+                @if ($tasks == NULL)
+                        <h5 class="justify-content: center"> 登録内容はありません</h5>
+                @else
                 @foreach ($tasks as $task)
                     <div class="d-flex row-gap-3 .pt-4">
                         <div class="p-2 flex-grow-1  mb-3">
@@ -57,15 +60,15 @@
                         </div>
                         <div class="p-2 mb-1">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalToggle">
+                                data-bs-target="#exampleModalToggle-{{$task->id}}">
                                 詳細
                             </button>
-                            <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
-                                aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                            <div class="modal fade" id="exampleModalToggle-{{$task->id}}" aria-hidden="true"
+                                aria-labelledby="exampleModalToggleLabel-{{$task->id}}" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel-{{$task->id}}">
                                                 {{ $task->name }}
                                             </h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -82,19 +85,19 @@
                                                     <button type="submit" class="btn btn-danger">削除</button>
                                                 </form>
                                             </div>
-                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
+                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2-{{$task->id}}"
                                                 data-bs-toggle="modal">変更</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
-                            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                        <div class="modal fade" id="exampleModalToggle2-{{$task->id}}" aria-hidden="true"
+                            aria-labelledby="exampleModalToggleLabel2-{{$task->id}}" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">タスク編集</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2-{{$task->id}}">タスク編集</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -104,12 +107,12 @@
                                             @csrf
                                             <div lass="mb-3">
                                                 <label for="recipient-name" class="col-form-label">タスク名</label>
-                                                <textarea class="form-control" id="task-name" type="text" name="name" placeholder="タイトルを入力"></textarea>
+                                                <textarea class="form-control" id="task-name" type="text" name="name" placeholder="タイトルを入力"> {{ $task->name }}</textarea>
                                                 <span>100文字まで</span>
                                             </div>
                                             <div lass="mb-3">
                                                 <label for="message-text" class="col-form-label">詳細内容</label>
-                                                <textarea class="form-control" id="task-name" type="text" name="detail" placeholder="説明内容を入力"></textarea>
+                                                <textarea class="form-control" id="task-name" type="text" name="detail" placeholder="説明内容を入力">{{ $task->detail }}</textarea>
                                                 <span>255文字まで</span>
                                             </div>
                                             @error('name')
@@ -125,6 +128,7 @@
                         </div>
                     </div>
                 @endforeach
+                @endif
                 <div class="pagination justify-content-center">
                     {{ $tasks->links() }}
                 </div>
