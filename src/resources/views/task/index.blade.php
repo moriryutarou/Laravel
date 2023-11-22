@@ -31,7 +31,7 @@
                 <form action="{{ route('TaskSearch.index') }}" class="d-flex" role="search">
                     <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索..."
                         name="keyword">
-                    <input type="hidden" id="game_id" name="game_id" value={{ request()->query('gameid') }}>
+                    <input type="hidden" id="game_id" name="game_id" value={{$game->id}}>
                     <button type="submit" class="btn btn-outline-success flex-shrink-0">検索</button>
                 </form>
             </div><!-- /.navbar-collapse -->
@@ -132,6 +132,9 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="pagination justify-content-center">
+                        {{ $tasks->links() }}
+                    </div>
                 @else
                     <figure class="text-center">
                         <blockquote class="blockquote">
@@ -139,9 +142,7 @@
                         </blockquote>
                     </figure>
                 @endif
-                <div class="pagination justify-content-center">
-                    {{ $tasks->links() }}
-                </div>
+
                 <div>
                     <hr>
                 </div>

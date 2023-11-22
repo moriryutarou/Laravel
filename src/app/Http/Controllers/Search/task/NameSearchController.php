@@ -11,7 +11,7 @@ class NameSearchController extends Controller
 {
     public function index(Request $request)
     {
-        $gameid = request()->query('gameid');
+        $gameid = request()->input('game_id');
         $game = Game::find($gameid);
 
         if(isset($request->keyword)){
