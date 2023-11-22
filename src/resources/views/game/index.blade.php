@@ -46,9 +46,12 @@
                     <div class="d-flex">
                         @if (\Illuminate\Support\Facades\auth::id() === $game->user_id)
                             <div class="p-2 flex-grow-1  mb-3">
-                                <summary>
-                                    <a href="{{ route('task.index', ['gameid' => $game->id]) }}">{{ $game->title }}</a>
-                                </summary>
+                                <div class="list-group">
+                                    <a href="{{ route('task.index', ['gameid' => $game->id]) }}"
+                                        class="list-group-item list-group-item-action ">
+                                        {{ $game->title }}
+                                    </a>
+                                </div>
                             </div>
 
                             <div class="p-2 mb-1">
@@ -72,7 +75,7 @@
                                                         @method('put')
                                                         @csrf
                                                         <label for="game-title" class="col-form-label">タイトル</label>
-                                                        <textarea class="form-control" id="game-title" type="text" name="game" placeholder="タイトルを入力"></textarea>
+                                                        <textarea class="form-control" id="game-title" type="text" name="game" placeholder="タイトルを入力">{{$game->title}}</textarea>
                                                         <span>100文字まで</span>
                                                         @error('game')
                                                             <p style="color: red;">{{ $message }}</p>

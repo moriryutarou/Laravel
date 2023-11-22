@@ -23,10 +23,6 @@
 
             <div class="collapse navbar-collapse" id="Navber">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="{{ route('game.index') }}" class="nav-link active" aria-current="page"
-                            href="#">戻る</a>
-                    </li>
                 </ul>
                 <form action="{{ route('TaskSearch.index') }}" class="d-flex" role="search">
                     <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索..."
@@ -34,9 +30,16 @@
                     <input type="hidden" id="game_id" name="game_id" value={{$game->id}}>
                     <button type="submit" class="btn btn-outline-success flex-shrink-0">検索</button>
                 </form>
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="{{ route('game.index') }}" class="nav-link active" aria-current="page"
+                            href="#">戻る</a>
+                    </li>
+                </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+
     <div>
 
         <div>
@@ -46,16 +49,15 @@
             @if (session('feedback.success'))
                 <p style="color: green">{{ session('feedback,success') }}</p>
             @endif
-            <div>
-                <a></a>
-            </div>
+
             <div class="container">
                 <hr>
                 @if (count($tasks) > 0)
                     @foreach ($tasks as $task)
                         <div class="d-flex row-gap-3 .pt-4">
                             <div class="p-2 flex-grow-1  mb-3">
-                                <summary><a>{{ $task->name }}</a>
+                                <summary>
+                                    <a>{{ $task->name }}</a>
                                 </summary>
                             </div>
                             <div class="p-2 mb-1">
