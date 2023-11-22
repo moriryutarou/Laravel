@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Task\TaskController;
 use App\Http\Controllers\Search\SearchController;
+use App\Http\Controllers\Search\task\NameSearchController;
 use Illuminate\Support\Facades\Route;
 
 use function Laravel\Prompts\search;
@@ -39,8 +40,13 @@ Route::middleware('auth')->group(function () {
 //Task
 Route::resource('/task',TaskController::class);
 
-//Search
+//Search(game)
 Route::get('/Search',[SearchController::class,'index'])->name('Search.index');
+
+//Search(task)
+Route::get('/Search/Task',[NameSearchController::class,'index'])->name('TaskSearch.index');
+
+
 
 
 

@@ -13,9 +13,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary .pb-5	">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary .pb-5" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"></a>
+            <a class="navbar-brand nav-item" href="#">{{ $game->title }}</a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber"
                 aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
                 <span class="navbar-toggler-icon"></span>
@@ -28,8 +28,10 @@
                             href="#">戻る</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索...">
+                <form action="{{ route('TaskSearch.index') }}" class="d-flex" role="search">
+                    <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索..."
+                        name="keyword">
+                    <input type="hidden" id="game_id" name="game_id" value={{ request()->query('gameid') }}>
                     <button type="submit" class="btn btn-outline-success flex-shrink-0">検索</button>
                 </form>
             </div><!-- /.navbar-collapse -->
@@ -49,85 +51,93 @@
             </div>
             <div class="container">
                 <hr>
-                @if ($tasks == NULL)
-                        <h5 class="justify-content: center"> 登録内容はありません</h5>
-                @else
-                @foreach ($tasks as $task)
-                    <div class="d-flex row-gap-3 .pt-4">
-                        <div class="p-2 flex-grow-1  mb-3">
-                            <summary><a>{{ $task->name }}</a>
-                            </summary>
-                        </div>
-                        <div class="p-2 mb-1">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalToggle-{{$task->id}}">
-                                詳細
-                            </button>
-                            <div class="modal fade" id="exampleModalToggle-{{$task->id}}" aria-hidden="true"
-                                aria-labelledby="exampleModalToggleLabel-{{$task->id}}" tabindex="-1">
+                @if (count($tasks) > 0)
+                    @foreach ($tasks as $task)
+                        <div class="d-flex row-gap-3 .pt-4">
+                            <div class="p-2 flex-grow-1  mb-3">
+                                <summary><a>{{ $task->name }}</a>
+                                </summary>
+                            </div>
+                            <div class="p-2 mb-1">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalToggle-{{ $task->id }}">
+                                    詳細
+                                </button>
+                                <div class="modal fade" id="exampleModalToggle-{{ $task->id }}" aria-hidden="true"
+                                    aria-labelledby="exampleModalToggleLabel-{{ $task->id }}" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5"
+                                                    id="exampleModalToggleLabel-{{ $task->id }}">
+                                                    {{ $task->name }}
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{ $task->detail }}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div>
+                                                    <form action="{{ route('task.destroy', $task->id) }}"
+                                                        method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">削除</button>
+                                                    </form>
+                                                </div>
+                                                <button class="btn btn-primary"
+                                                    data-bs-target="#exampleModalToggle2-{{ $task->id }}"
+                                                    data-bs-toggle="modal">変更</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="exampleModalToggle2-{{ $task->id }}" aria-hidden="true"
+                                aria-labelledby="exampleModalToggleLabel2-{{ $task->id }}" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel-{{$task->id}}">
-                                                {{ $task->name }}
-                                            </h1>
+                                            <h1 class="modal-title fs-5"
+                                                id="exampleModalToggleLabel2-{{ $task->id }}">タスク編集</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            {{ $task->detail }}
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div>
-                                                <form action="{{ route('task.destroy', $task->id) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">削除</button>
-                                                </form>
-                                            </div>
-                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2-{{$task->id}}"
-                                                data-bs-toggle="modal">変更</button>
+                                            <form action="{{ route('task.update', $task->id) }}" method="POST">
+                                                @method('PUT')
+                                                @csrf
+                                                <div lass="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">タスク名</label>
+                                                    <textarea class="form-control" id="task-name" type="text" name="name" placeholder="タイトルを入力"> {{ $task->name }}</textarea>
+                                                    <span>100文字まで</span>
+                                                </div>
+                                                <div lass="mb-3">
+                                                    <label for="message-text" class="col-form-label">詳細内容</label>
+                                                    <textarea class="form-control" id="task-name" type="text" name="detail" placeholder="説明内容を入力">{{ $task->detail }}</textarea>
+                                                    <span>255文字まで</span>
+                                                </div>
+                                                @error('name')
+                                                    <p style="color: red;">{{ $message }}</p>
+                                                @enderror
+                                                <div class="modal-footer mb-3">
+                                                    <button type="submit" class="btn btn-primary">確定</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="exampleModalToggle2-{{$task->id}}" aria-hidden="true"
-                            aria-labelledby="exampleModalToggleLabel2-{{$task->id}}" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2-{{$task->id}}">タスク編集</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ route('task.update', $task->id) }}" method="POST">
-                                            @method('PUT')
-                                            @csrf
-                                            <div lass="mb-3">
-                                                <label for="recipient-name" class="col-form-label">タスク名</label>
-                                                <textarea class="form-control" id="task-name" type="text" name="name" placeholder="タイトルを入力"> {{ $task->name }}</textarea>
-                                                <span>100文字まで</span>
-                                            </div>
-                                            <div lass="mb-3">
-                                                <label for="message-text" class="col-form-label">詳細内容</label>
-                                                <textarea class="form-control" id="task-name" type="text" name="detail" placeholder="説明内容を入力">{{ $task->detail }}</textarea>
-                                                <span>255文字まで</span>
-                                            </div>
-                                            @error('name')
-                                                <p style="color: red;">{{ $message }}</p>
-                                            @enderror
-                                            <div class="modal-footer mb-3">
-                                                <button type="submit" class="btn btn-primary">確定</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                    <figure class="text-center">
+                        <blockquote class="blockquote">
+                            <p>タスクは登録されていません</p>
+                        </blockquote>
+                    </figure>
                 @endif
                 <div class="pagination justify-content-center">
                     {{ $tasks->links() }}

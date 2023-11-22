@@ -13,9 +13,8 @@ class SearchController extends Controller
         if(isset($request->keyword)){
             $games = Game::where('title',"LIKE", "%$request->keyword%")
                             ->paginate(5);
-        }
-        else{
-            $games = Game::get();
+        }else{
+            $games = array();
         }
         return view('game.index')
         ->with('games',$games);

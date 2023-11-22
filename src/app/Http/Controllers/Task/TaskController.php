@@ -22,8 +22,12 @@ class TaskController extends Controller
         $taskService = new TaskService;
         $gameid = request()->query('gameid');
         $tasks = $taskService->getTasks($gameid);
+
+        $game = Game::find($gameid);
         return view('task.index')
-            ->with('tasks',$tasks);
+            ->with('tasks',$tasks)
+            ->with('game',$game);
+
     }
 
     /**
@@ -44,7 +48,10 @@ class TaskController extends Controller
         $task->detail = $request->input('detail');
         $task->game_id = $request->input('game_id');
         $task->save();
-        return redirect()->route('game.index');
+        $gameid = $task->game_id;
+        $game = Game::find($gameid);
+        return redirect()->route('task.index',['gameid'=>$task->game_id])
+                    ->with('game',$game);
     }
 
     /**
@@ -72,9 +79,11 @@ class TaskController extends Controller
         $task = Task::where('id',$id)->firstOrFail();
         $task->name = $request->input('name');
         $task->detail = $request->input('detail');
+        $gameid = $task->game_id;
         $task->save();
-        return redirect()
-            ->route('game.index');
+        $game = Game::find($gameid);
+        return redirect()->route('task.index',['gameid'=>$task->game_id])
+                    ->with('game',$game);
     }
 
     /**
@@ -83,8 +92,10 @@ class TaskController extends Controller
     public function destroy($id)
     {
         $task = Task::find($id);
+        $gameid = $task->game_id;
         $task->delete();
-        return redirect()
-            ->route('game.index');
-    }
+
+        $game = Game::find($gameid);
+        return redirect()->route('task.index',['gameid'=>$task->game_id])
+                    ->with('game',$game);    }
 }
