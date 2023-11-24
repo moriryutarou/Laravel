@@ -161,7 +161,7 @@
                 <form action="{{ route('task.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <textarea class="form-control" id="task-name" type="text" name="name" placeholder="タスクを入力"></textarea>
+                        <textarea class="form-control" id="task-name" type="text" name="name" placeholder="タスク名を入力"></textarea>
                     </div>
                     <div class="mb-3">
                         <small>100文字まで</small>

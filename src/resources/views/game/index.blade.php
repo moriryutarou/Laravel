@@ -160,7 +160,6 @@
                 </blockquote>
                 <form action="{{ route('game.create') }}" method="POST">
                     @csrf
-                    <label class="form-label" for="game-title">タイトル</label>
                     <div class="mb-3">
                         <textarea class="form-control" id="game-title" type="text" name="game" placeholder="タイトルを入力"></textarea>
                     </div>
