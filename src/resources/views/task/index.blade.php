@@ -10,32 +10,32 @@
     <title>Gamer's note</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary .pb-5" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand nav-item" href="#">{{ $game->title }}</a>
+            <a class="navbar-brand nav-item" href="#">Gamer's note</a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber"
                 aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="Navber">
+            <div class="collapse navbar-collapse " id="Navber">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 </ul>
                 <form action="{{ route('TaskSearch.index') }}" class="d-flex" role="search">
-                    <input type="search" class="form-control me-2" placeholder="検索..." aria-label="検索..."
-                        name="keyword">
-                    <input type="hidden" id="game_id" name="game_id" value={{$game->id}}>
+                    <input type="search" class="form-control me-2" aria-label="検索..." name="keyword">
+                    <input type="hidden" id="game_id" name="game_id" value={{ $game->id }}>
                     <button type="submit" class="btn btn-outline-success flex-shrink-0">検索</button>
                 </form>
-                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="{{ route('game.index') }}" class="nav-link active" aria-current="page"
-                            href="#">戻る</a>
-                    </li>
-                </ul>
+                <form action="{{ route('game.index') }}" class="mx-sm-1">
+                    <button type="submit" class="btn btn-outline-secondary flex-shrink-0" aria-current="page"
+                        href="#">戻る</button>
+                </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
@@ -50,7 +50,10 @@
                 <p style="color: green">{{ session('feedback,success') }}</p>
             @endif
 
-            <div class="container">
+            <div class="container-md ">
+                <div class="my-2">
+                    <h4 style="font-family: 'DotGothic16', sans-serif;">{{ $game->title }}</h4>
+                </div>
                 <hr>
                 @if (count($tasks) > 0)
                     @foreach ($tasks as $task)
